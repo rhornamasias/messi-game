@@ -4,7 +4,7 @@
 
 Juego de tipo arcade en pixel art hecho con **Wollok Game**. Controlás a Messi y atrapás objetos que caen para subir (o bajar) su **barra emocional**. Si llega al 100% ganás; si llega a 0% perdés.
 
-🎮 **Jugar online:** [https://rhornamasias.github.io/messi-game/]
+🎮 **Jugar online:** [Jugar ahora](https://rhornamasias.github.io/messi-game/)
 
 ## Participantes
 
