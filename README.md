@@ -4,7 +4,7 @@
 
 Juego de tipo arcade en pixel art hecho con **Wollok Game**. Controlás a Messi y atrapás objetos que caen para subir (o bajar) su **barra emocional**. Si llega al 100% ganás; si llega a 0% perdés.
 
-🎮 **Jugar online:** _próximamente_
+🎮 **Jugar online:** [https://rhornamasias.github.io/messi-game/]
 
 ## Participantes
 
@@ -45,7 +45,7 @@ Hay dos dificultades (Normal y Difícil), que modifican los umbrales, las veloci
 
 1. Instalá [Wollok](https://www.wollok.org/) (extensión de VS Code o Wollok IDE).
 2. Clonás este repositorio: `git clone https://github.com/rhornamasias/messi-game.git`
-3. Abrí la carpeta y ejecutá `src/code.wpgm`.
+3. Abrí la carpeta y ejecutá `code.wpgm`.
 4. Para correr los tests: `tests/juego.wtest`.
 
 ## Diseño
