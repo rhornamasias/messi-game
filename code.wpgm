@@ -1,11 +1,11 @@
 import wollok.game.*
-import messi.*
-import barraEmocional.*
-import recolectables.*
-import gestionDeNiveles.*
-import estados.*
-import pantallas.*
-import musica.*
+import src.messi.*
+import src.barraEmocional.*
+import src.recolectables.*
+import src.gestionDeNiveles.*
+import src.estados.*
+import src.pantallas.*
+import src.musica.*
 
 program juego {
   game.title("Messi Game")
