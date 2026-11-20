@@ -4,14 +4,17 @@ import barraEmocional.*
 class Recolectable {
     var position = game.origin()
     const property image
+    const impacto
 
     method position() = position
     method position(nuevaPosicion) { position = nuevaPosicion }
     
     
     method iniciarCaida(velocidad) {
-        game.onTick(velocidad, "caer_" + self.identity().toString(), { self.caer() })
+        game.onTick(velocidad, self.nombreDeCaida(), { self.caer() })
     }
+
+    method nombreDeCaida() = "caer_" + self.identity().toString()
 
     method caer() {
         position = position.down(1)
@@ -29,7 +32,7 @@ class Recolectable {
     method desaparecerSeguro() {
         if (game.hasVisual(self)) {
             game.removeVisual(self)
-            game.removeTickEvent("caer_" + self.identity().toString())
+            game.removeTickEvent(self.nombreDeCaida())
         }
     }
 
@@ -39,27 +42,17 @@ class Recolectable {
 
     method sonido()
 
-    method aplicarEfecto()
+    method aplicarEfecto() {
+        barraEmocional.modificarPorcentaje(impacto)
+    }
 }
 
 class RecolectableMalo inherits Recolectable {
-    const impacto 
-    
     override method sonido() = "sonidoMalo.mp3"
-
-    override method aplicarEfecto() {
-        barraEmocional.modificarPorcentaje(impacto)
-    }
 }
 
 class RecolectableBueno inherits Recolectable {
-    const impacto 
-
     override method sonido() = "sonidoBueno.mp3"
-    
-    override method aplicarEfecto() {
-        barraEmocional.modificarPorcentaje(impacto)
-    }
 }
 
 const sancorSeguros = { => new RecolectableMalo(impacto = -1.0, image = "sancorSeguros.png") }

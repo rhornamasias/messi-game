@@ -1,3 +1,5 @@
+import wollok.game.*
+
 object silencio {
     method played() = false
     method stop() {}

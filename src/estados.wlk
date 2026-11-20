@@ -1,5 +1,4 @@
 import recolectables.*
-import messi.*
 
 class EstadoEmocional {
     const property tiempoCooldown
@@ -8,7 +7,10 @@ class EstadoEmocional {
 }
 
 object normal {
-    method afectarImagen() { messi.cambiarImagen("messi.png") }
+
+    method imagenMessi() = "messi.png"
+    method imagenMenu() = "pantallaMenu_normal.png"
+    method textoMenu() = "Dificultad seleccionada: NORMAL (Usá 2 para cambiar, Enter para iniciar)"
 
     method crisis() = new EstadoEmocional(
         tiempoCooldown = 300, 
@@ -30,7 +32,9 @@ object normal {
 }
 
 object dificil {
-    method afectarImagen() { messi.cambiarImagen("messi_dificil.png") }
+    method imagenMessi() = "messi_dificil.png"
+    method imagenMenu() = "pantallaMenu_dificil.png"
+    method textoMenu() = "Dificultad seleccionada: DIFICIL (Usá 1 para cambiar, Enter para iniciar)"
 
     method crisis() = new EstadoEmocional(
         tiempoCooldown = 400,

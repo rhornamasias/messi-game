@@ -1,21 +1,16 @@
 import wollok.game.*
-import barraEmocional.*
-import recolectables.*
 import gestionDeNiveles.*
 import estados.*
-import musica.*
-import pantallas.*
+
 object messi {
-    var position = game.at(8, 0)
+    const posicionInicial = game.at(8, 0)
+    var position = posicionInicial
     var estadoEmocional = normal.estable()
     var enCooldown = false
-    var imagenActual = "messi.png"
 
     method position() = position
 
-    method image() = imagenActual
-
-    method cambiarImagen(nuevaImagen) { imagenActual = nuevaImagen }
+    method image() = gestionDeNivel.dificultadActual().imagenMessi()
 
     method estadoEmocional() = estadoEmocional
 
@@ -24,22 +19,18 @@ object messi {
     }
 
     method reiniciar() {
-        position = game.at(8, 0)
+        position = posicionInicial
         estadoEmocional = gestionDeNivel.dificultadActual().estable()
         enCooldown = false
     }
 
-    method moverseALaIzquierda() {
-        if (not enCooldown) {
-            const nuevaX = 0.max(position.x() - 1)
-            position = game.at(nuevaX, position.y())
-            self.iniciarCooldown()
-        }
-    }
+    method moverseALaIzquierda() { self.moverseHacia(-1) }
 
-    method moverseALaDerecha() {
-        if (not enCooldown) { 
-            const nuevaX = (game.width() - 1).min(position.x() + 1)
+    method moverseALaDerecha() { self.moverseHacia(1) }
+
+    method moverseHacia(desplazamiento) {
+        if (! enCooldown) {
+            const nuevaX = 0.max((game.width() - 1).min(position.x() + desplazamiento))
             position = game.at(nuevaX, position.y())
             self.iniciarCooldown()
         }
@@ -47,26 +38,10 @@ object messi {
 
     method iniciarCooldown() {
         enCooldown = true
-        game.onTick(estadoEmocional.tiempoCooldown(), "cooldown", {
-            enCooldown = false
-            game.removeTickEvent("cooldown")
-        })
+        game.schedule(estadoEmocional.tiempoCooldown(), { enCooldown = false })
     }
 
     method atraparRecolectable(recolectable){
         recolectable.esAtrapadoPor(self)
-        
     }
-
-    method perderJuego() {
-        game.say(self, "Es Increible pero no se me DA!!!!")
-        pantallaPerder.mostrar()
-        reproductorMusical.reproducirDerrota()
-    }
-    method ganarJuego() {
-        game.say(self, "!!!! Somos Campeones! del Mundo !!!! " )
-        pantallaGanar.mostrar()
-        reproductorMusical.reproducirVictoria()
-    }
-
 }

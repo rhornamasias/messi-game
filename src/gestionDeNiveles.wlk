@@ -1,13 +1,16 @@
 import wollok.game.*
 import messi.*
 import estados.*
+import pantallas.*
+import musica.*
 
 object gestionDeNivel {
     var dificultadActual = normal
+
     method dificultadActual() = dificultadActual
+
     method cambiarDificultad(nuevaDificultad) {
         dificultadActual = nuevaDificultad
-        nuevaDificultad.afectarImagen()
     }
     
     method iniciarCaidaDeRecolectables() {
@@ -22,5 +25,15 @@ object gestionDeNivel {
         nuevoItem.position(game.at(xAleatoria, game.height() - 1))
         game.addVisual(nuevoItem)
         nuevoItem.iniciarCaida(messi.estadoEmocional().velocidadCaida())
+    }
+
+    method ganar() {
+        pantallaGanar.mostrar()
+        reproductorMusical.reproducirVictoria()
+    }
+
+    method perder() {
+        pantallaPerder.mostrar()
+        reproductorMusical.reproducirDerrota()
     }
 }

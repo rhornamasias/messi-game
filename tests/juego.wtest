@@ -30,4 +30,23 @@ describe "Messi Game - logica principal" {
     assert.equals(100, messi.estadoEmocional().tiempoCooldown())
     assert.equals(500, messi.estadoEmocional().velocidadCaida())
   }
+
+  test "Messi se muestra con la imagen de la dificultad elegida" {
+    assert.equals("messi.png", messi.image())
+
+    gestionDeNivel.cambiarDificultad(dificil)
+    assert.equals("messi_dificil.png", messi.image())
+  }
+  
+  test "Los recolectables buenos y malos suenan distinto al ser atrapados" {
+    assert.equals("sonidoBueno.mp3", copaAmerica.apply().sonido())
+    assert.equals("sonidoMalo.mp3", tarjetaRoja.apply().sonido())
+  }
+
+  test "El indicador de la barra se ubica segun el porcentaje" {
+    assert.equals(7, indicadorBarra.position().x())
+
+    barraEmocional.modificarPorcentaje(0.2)
+    assert.equals(8, indicadorBarra.position().x())
+  }
 }
