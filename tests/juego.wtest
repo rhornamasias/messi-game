@@ -1,8 +1,8 @@
 import src.messi.*
 import src.barraEmocional.*
 import src.recolectables.*
-import src.gestionDeNiveles.*
-import src.estados.*
+import src.niveles.*
+import src.partida.*
 
 describe "Messi Game - logica principal" {
 
@@ -24,17 +24,17 @@ describe "Messi Game - logica principal" {
     assert.equals(300, messi.estadoEmocional().velocidadCaida())
   }
 
-  test "Con el mismo porcentaje la dificultad dificil genera un estado de Gloria mas exigente que la normal" {
-    gestionDeNivel.cambiarDificultad(dificil)
+  test "Con el mismo porcentaje el nivel 4 genera un estado de Gloria mas exigente que el nivel 1" {
+    partida.nivelActual(nivel4)
     barraEmocional.modificarPorcentaje(0.2)
     assert.equals(100, messi.estadoEmocional().tiempoCooldown())
     assert.equals(500, messi.estadoEmocional().velocidadCaida())
   }
 
-  test "Messi se muestra con la imagen de la dificultad elegida" {
+  test "Messi se muestra con la imagen del nivel actual" {
     assert.equals("messi.png", messi.image())
 
-    gestionDeNivel.cambiarDificultad(dificil)
+    partida.nivelActual(nivel4)
     assert.equals("messi_dificil.png", messi.image())
   }
   
@@ -48,5 +48,22 @@ describe "Messi Game - logica principal" {
 
     barraEmocional.modificarPorcentaje(0.2)
     assert.equals(8, indicadorBarra.position().x())
+  }
+
+  test"El juego arranca en el nivel 1 y el último nivel es el 5" {
+    assert.equals(1, partida.nivelActual().numero())
+    assert.notThat(partida.esUltimoNivel())
+
+    partida.nivelActual(nivel5)
+    assert.that(partida.esUltimoNivel())
+  }
+
+  test "El numero de cada nivel coincide con su posicion en la partida" {
+    assert.equals([ 1, 2, 3, 4, 5 ], partida.niveles().map({ nivel => nivel.numero() }) )
+  }
+
+  test "Cada nivel tiene su propia pantalla de presentación" {
+    assert.equals("presentacion_nivel1.png", nivel1.imagenPresentacion())
+    assert.equals("presentacion_nivel5.png", nivel5.imagenPresentacion())
   }
 }

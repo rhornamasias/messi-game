@@ -10,14 +10,24 @@ object reproductorMusical {
     var musicaFinal = silencio
 
     method iniciarMusicaFondo() {
-        const musica = game.sound("musicaFondo.mp3")
+        self.reproducirFondo("musicaFondo.mp3")
+    }
+
+    method iniciarMusicaDeNivel(nivel) {
+        self.reproducirFondo(nivel.musica())
+    }
+
+    method reproducirFondo(archivo) {
+        self.detenerTodo()
+        const musica = game.sound(archivo)
         musica.shouldLoop(true)
         musica.volume(0.3)
         musicaDeFondo = musica
         game.schedule(500, { musica.play() })
     }
 
-    method detenerMusicaFondo() {
+    method detenerTodo() {
+        self.detener(musicaFinal)
         self.detener(musicaDeFondo)
     }
 
@@ -34,14 +44,12 @@ object reproductorMusical {
     }
 
     method reproducirFinal(archivo) {
-        self.detenerMusicaFondo()
+        self.detenerTodo()
         musicaFinal = game.sound(archivo)
         musicaFinal.play()
     }
 
     method reiniciar() {
-        self.detener(musicaFinal)
-        self.detenerMusicaFondo()
         self.iniciarMusicaFondo()
     }
 }

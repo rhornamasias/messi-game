@@ -1,16 +1,16 @@
 import wollok.game.*
-import gestionDeNiveles.*
-import estados.*
+import niveles.*
+import partida.*
 
 object messi {
     const posicionInicial = game.at(8, 0)
     var position = posicionInicial
-    var estadoEmocional = normal.estable()
+    var estadoEmocional = nivel1.estable()
     var enCooldown = false
 
     method position() = position
 
-    method image() = gestionDeNivel.dificultadActual().imagenMessi()
+    method image() = partida.nivelActual().imagenMessi()
 
     method estadoEmocional() = estadoEmocional
 
@@ -20,7 +20,7 @@ object messi {
 
     method reiniciar() {
         position = posicionInicial
-        estadoEmocional = gestionDeNivel.dificultadActual().estable()
+        estadoEmocional = partida.nivelActual().estable()
         enCooldown = false
     }
 

@@ -2,8 +2,9 @@ import wollok.game.*
 import src.messi.*
 import src.barraEmocional.*
 import src.recolectables.*
-import src.gestionDeNiveles.*
 import src.estados.*
+import src.niveles.*
+import src.partida.*
 import src.pantallas.*
 import src.musica.*
 

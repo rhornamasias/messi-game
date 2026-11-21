@@ -1,6 +1,6 @@
 import wollok.game.*
 import messi.*
-import gestionDeNiveles.*
+import partida.*
 
 object barraEmocional {
     const porcentajeInicial = 0.5
@@ -31,12 +31,12 @@ object barraEmocional {
     method image() = "barraEmocional.png"
 
     method chequearEstado() {
-        const dificultad = gestionDeNivel.dificultadActual()
-        if (self.estaEnMinimo()) { gestionDeNivel.perder() }
-        else if (self.estaEnMaximo()) { gestionDeNivel.ganar() }
-        else if (self.estaEnGloria()) { messi.cambiarEstado(dificultad.gloria()) }
-        else if (self.estaEnCrisis()) { messi.cambiarEstado(dificultad.crisis()) }
-        else { messi.cambiarEstado(dificultad.estable()) }
+        const nivel = partida.nivelActual()
+        if (self.estaEnMinimo()) { partida.perder() }
+        else if (self.estaEnMaximo()) { partida.ganar() }
+        else if (self.estaEnGloria()) { messi.cambiarEstado(nivel.gloria()) }
+        else if (self.estaEnCrisis()) { messi.cambiarEstado(nivel.crisis()) }
+        else { messi.cambiarEstado(nivel.estable()) }
     }
 }
 
