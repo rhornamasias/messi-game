@@ -10,7 +10,7 @@ object partida{
     var property nivelActual = nivel1
     
     method niveles() = niveles
-    
+
     method esUltimoNivel() = nivelActual == niveles.last()
 
     method empezar() {
@@ -41,11 +41,13 @@ object partida{
 
         barraEmocional.reiniciar()
         messi.reiniciar()
+        nivelActual.objetivo().reiniciar()
 
         game.addVisual(messi)
         game.addVisual(barraEmocional)
         game.addVisual(indicadorBarra)
         game.addVisual(indicadorNivel)
+        game.addVisual(indicadorObjetivo)
 
         keyboard.left().onPressDo({ messi.moverseALaIzquierda() })
         keyboard.right().onPressDo({ messi.moverseALaDerecha() })
@@ -55,6 +57,14 @@ object partida{
         atajoVolverAlMenu.habilitar()
 
         reproductorMusical.iniciarMusicaDeNivel(nivelActual)
+    }
+
+    method recolectado(recolectable){
+        const objetivo = nivelActual.objetivo()
+        objetivo.recolectado(recolectable)
+        if (objetivo.seCumplio()) {
+            self.ganar()
+        }
     }
 
     method generarObjeto() {

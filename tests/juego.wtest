@@ -2,6 +2,7 @@ import src.messi.*
 import src.barraEmocional.*
 import src.recolectables.*
 import src.niveles.*
+import src.objetivos.*
 import src.partida.*
 
 describe "Messi Game - logica principal" {
@@ -65,5 +66,31 @@ describe "Messi Game - logica principal" {
   test "Cada nivel tiene su propia pantalla de presentación" {
     assert.equals("presentacion_nivel1.png", nivel1.imagenPresentacion())
     assert.equals("presentacion_nivel5.png", nivel5.imagenPresentacion())
+  }
+
+  test "La barra no pasa del 100 por ciento y llenarla cumple el objetivo de los primeros niveles" {
+    assert.notThat(nivel1.objetivo().seCumplio())
+
+    barraEmocional.modificarPorcentaje(1)
+    assert.equals(1, barraEmocional.porcentaje())
+    assert.that(nivel1.objetivo().seCumplio())
+  }
+
+  test "El objetivo de juntar copas solo cuenta las copas del mundo" {
+    const objetivo = new ObjetivoJuntarCopas(cantidad = 2)
+
+    objetivo.recolectado(gol.apply())
+    objetivo.recolectado(copaMundial.apply())
+    assert.notThat(objetivo.seCumplio())
+    assert.equals("Copas: 1/2", objetivo.textoDeProgreso())
+
+    objetivo.recolectado(copaMundial.apply())
+    assert.that(objetivo.seCumplio())
+  }
+
+  test "En el nivel 5 las copas del mundo solo aparecen en estado de gloria" {
+    assert.that(nivel5.gloria().itemsPosibles().contains(copaMundial))
+    assert.notThat(nivel5.estable().itemsPosibles().contains(copaMundial))
+    assert.notThat(nivel5.crisis().itemsPosibles().contains(copaMundial))
   }
 }

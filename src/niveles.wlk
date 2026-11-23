@@ -1,5 +1,6 @@
 import estados.*
 import recolectables.*
+import objetivos.*
 
 class Nivel {
     const property numero
@@ -8,6 +9,7 @@ class Nivel {
     const property imagenPresentacion
     const property imagenGanar
     const property imagenPerder
+    const property objetivo
 
     method crisis()
     method estable()
@@ -20,7 +22,8 @@ object nivel1 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel1.png",
     imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png"
+    imagenPerder = "pantallaPerder.png",
+    objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
         tiempoCooldown = 300, 
@@ -47,7 +50,8 @@ object nivel2 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel2.png",
     imagenGanar = "pantallaGanar.png", 
-    imagenPerder = "pantallaPerder.png"
+    imagenPerder = "pantallaPerder.png",
+    objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
         tiempoCooldown = 330,
@@ -74,7 +78,8 @@ object nivel3 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel3.png",
      imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png"
+    imagenPerder = "pantallaPerder.png",
+    objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
         tiempoCooldown = 360,
@@ -100,7 +105,8 @@ object nivel4 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel4.png",
     imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png"
+    imagenPerder = "pantallaPerder.png",
+    objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
         tiempoCooldown = 400,
@@ -127,7 +133,8 @@ object nivel5 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel5.png",
     imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png"
+    imagenPerder = "pantallaPerder.png",
+    objetivo = new ObjetivoJuntarCopas(cantidad = 5)
 ) {
     override method crisis() = new EstadoEmocional(
         tiempoCooldown = 450,

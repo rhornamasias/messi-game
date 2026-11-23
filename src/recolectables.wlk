@@ -1,5 +1,6 @@
 import wollok.game.*
 import barraEmocional.*
+import partida.*
 
 class Recolectable {
     var position = game.origin()
@@ -27,6 +28,7 @@ class Recolectable {
         self.reproducirSonido()
         self.aplicarEfecto()
         self.desaparecerSeguro()
+        partida.recolectado(self)
     }
 
     method desaparecerSeguro() {
@@ -45,6 +47,8 @@ class Recolectable {
     method aplicarEfecto() {
         barraEmocional.modificarPorcentaje(impacto)
     }
+
+    method esCopaDelMundo() = false
 }
 
 class RecolectableMalo inherits Recolectable {
@@ -55,11 +59,15 @@ class RecolectableBueno inherits Recolectable {
     override method sonido() = "sonidoBueno.mp3"
 }
 
+class RecolectableCopaDelMundo inherits RecolectableBueno {
+    override method esCopaDelMundo() = true
+}
+
 const sancorSeguros = { => new RecolectableMalo(impacto = -1.0, image = "sancorSeguros.png") }
 const tarjetaRoja = { => new RecolectableMalo(impacto = -0.05, image = "tarjetaRoja.png") }
 const finalPerdida = { => new RecolectableMalo(impacto = -0.25, image = "finalPerdida.png") }
 const gol = { => new RecolectableBueno(impacto = 0.05, image = "gol.png") }
 const critica = { => new RecolectableMalo(impacto = -0.1, image = "critica.png") }
-const copaMundial = { => new RecolectableBueno(impacto = 0.25, image = "copaMundial.png") }
+const copaMundial = { => new RecolectableCopaDelMundo(impacto = 0.25, image = "copaMundial.png") }
 const copaAmerica = { => new RecolectableBueno(impacto = 0.1, image = "copaAmerica.png") }
 const camisetaDiez = { => new RecolectableBueno(impacto = 0.07, image = "camisetaDiez.png") }

@@ -3,6 +3,7 @@ import src.messi.*
 import src.barraEmocional.*
 import src.recolectables.*
 import src.estados.*
+import src.objetivos.*
 import src.niveles.*
 import src.partida.*
 import src.pantallas.*
@@ -16,7 +17,6 @@ program juego {
   game.boardGround("board.png")
   reproductorMusical.iniciarMusicaFondo()
 
-  
   pantallaMenu.mostrar()
 
   game.start()

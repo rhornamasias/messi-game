@@ -33,7 +33,6 @@ object barraEmocional {
     method chequearEstado() {
         const nivel = partida.nivelActual()
         if (self.estaEnMinimo()) { partida.perder() }
-        else if (self.estaEnMaximo()) { partida.ganar() }
         else if (self.estaEnGloria()) { messi.cambiarEstado(nivel.gloria()) }
         else if (self.estaEnCrisis()) { messi.cambiarEstado(nivel.crisis()) }
         else { messi.cambiarEstado(nivel.estable()) }

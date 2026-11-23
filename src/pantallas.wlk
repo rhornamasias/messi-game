@@ -20,14 +20,14 @@ object indicadorVolverAlMenu {
     method text() = "Presioná M para volver al menú"
 }
 
-object indicadorInicio {
-    method position() = game.at(8, 0)
-    method text() = "Enter: empezar | 1 a 5: elegir nivel"
-}
-
 object indicadorAccion {
     var property text = ""
     method position() = game.at(8, 2)
+}
+
+object indicadorObjetivo {
+    method position() = game.at(0, 7)
+    method text() = partida.nivelActual().objetivo().textoDeProgreso()
 }
 
 object indicadorNivel {
@@ -37,17 +37,35 @@ object indicadorNivel {
 
 object pantallaMenu {
     method position() = game.at(0, 0)
-    method image() = "pantallaMenu_normal.png"
+    method image() = "pantallaMenu.png"
 
     method mostrar() {
         game.addVisual(self)
-        game.addVisual(indicadorInicio)
         keyboard.enter().onPressDo({ partida.empezar() })
         keyboard.num1().onPressDo({ partida.empezarEn(nivel1) })
         keyboard.num2().onPressDo({ partida.empezarEn(nivel2) })
         keyboard.num3().onPressDo({ partida.empezarEn(nivel3) })
         keyboard.num4().onPressDo({ partida.empezarEn(nivel4) })
         keyboard.num5().onPressDo({ partida.empezarEn(nivel5) })
+        keyboard.i().onPressDo({ pantallaInstrucciones.mostrar() })
+    }
+}
+object pantallaInstrucciones {
+    method position() = game.at(0, 0)
+    method image() = "instrucciones.png"
+
+    method mostrar() {
+        game.clear()
+        game.addVisual(self)
+
+        keyboard.i().onPressDo({ self.volverAlMenu() })
+        keyboard.m().onPressDo({ self.volverAlMenu() })
+        keyboard.enter().onPressDo({ self.volverAlMenu() })
+    }
+
+    method volverAlMenu() {
+        game.clear()
+        pantallaMenu.mostrar()
     }
 }
 
@@ -79,7 +97,9 @@ class PantallaDeResultado {
         
         indicadorAccion.text(self.textoDeAccion())
         game.addVisual(indicadorAccion)
-        game.addVisual(indicadorVolverAlMenu)
+        if (self.mostrarAtajoAlMenu()) {
+            game.addVisual(indicadorVolverAlMenu)
+        }
 
         keyboard.enter().onPressDo({ self.continuar() })
         atajoVolverAlMenu.habilitar()
@@ -93,7 +113,7 @@ object pantallaNivelSuperado inherits PantallaDeResultado {
         return if (partida.esUltimoNivel()) "¡Completaste el juego! Enter para volver al menú" else "¡Nivel superado! Presioná Enter para el siguiente nivel"
     }
 
-    override method mostrarAtajoAlMenu() = !partida.esUltimoNivel()
+    override method mostrarAtajoAlMenu() = not partida.esUltimoNivel()
 
     override method continuar() {
         partida.continuarTrasGanar()
