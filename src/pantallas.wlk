@@ -52,15 +52,13 @@ object pantallaMenu {
 }
 object pantallaInstrucciones {
     method position() = game.at(0, 0)
-    method image() = "instrucciones.png"
+    method image() = "pantallaInstrucciones.png"
 
     method mostrar() {
         game.clear()
         game.addVisual(self)
 
-        keyboard.i().onPressDo({ self.volverAlMenu() })
         keyboard.m().onPressDo({ self.volverAlMenu() })
-        keyboard.enter().onPressDo({ self.volverAlMenu() })
     }
 
     method volverAlMenu() {
