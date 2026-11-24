@@ -27,12 +27,12 @@ object indicadorAccion {
 
 object indicadorObjetivo {
     method position() = game.at(0, 7)
-    method text() = partida.nivelActual().objetivo().textoDeProgreso()
+    method image() = partida.nivelActual().objetivo().imagenDeProgreso()
 }
 
 object indicadorNivel {
     method position() = game.at(0, 8)
-    method text() = "Nivel " + partida.nivelActual().numero().toString()
+    method image() = partida.nivelActual().imagenIndicadorNivel()
 }
 
 object pantallaMenu {

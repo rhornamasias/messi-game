@@ -47,7 +47,9 @@ object partida{
         game.addVisual(barraEmocional)
         game.addVisual(indicadorBarra)
         game.addVisual(indicadorNivel)
-        game.addVisual(indicadorObjetivo)
+        if(nivelActual.objetivo().tieneIndicador()) {
+            game.addVisual(indicadorObjetivo)
+        }
 
         keyboard.left().onPressDo({ messi.moverseALaIzquierda() })
         keyboard.right().onPressDo({ messi.moverseALaDerecha() })

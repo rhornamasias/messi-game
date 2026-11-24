@@ -7,6 +7,7 @@ class Nivel {
     const property imagenMessi
     const property musica
     const property imagenPresentacion
+    const property imagenIndicadorNivel
     const property imagenGanar
     const property imagenPerder
     const property objetivo
@@ -21,6 +22,7 @@ object nivel1 inherits Nivel(
     imagenMessi = "messi.png",
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel1.png",
+    imagenIndicadorNivel = "hud_nivel1.png",
     imagenGanar = "pantallaGanar.png",
     imagenPerder = "pantallaPerder.png",
     objetivo = new ObjetivoLlenarBarra()
@@ -49,6 +51,7 @@ object nivel2 inherits Nivel(
     imagenMessi = "messi.png",
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel2.png",
+    imagenIndicadorNivel = "hud_nivel2.png",
     imagenGanar = "pantallaGanar.png", 
     imagenPerder = "pantallaPerder.png",
     objetivo = new ObjetivoLlenarBarra()
@@ -77,7 +80,8 @@ object nivel3 inherits Nivel(
     imagenMessi = "messi.png",
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel3.png",
-     imagenGanar = "pantallaGanar.png",
+    imagenIndicadorNivel = "hud_nivel3.png",
+    imagenGanar = "pantallaGanar.png",
     imagenPerder = "pantallaPerder.png",
     objetivo = new ObjetivoLlenarBarra()
 ) {
@@ -104,6 +108,7 @@ object nivel4 inherits Nivel(
     imagenMessi = "messi_dificil.png",
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel4.png",
+    imagenIndicadorNivel = "hud_nivel4.png",
     imagenGanar = "pantallaGanar.png",
     imagenPerder = "pantallaPerder.png",
     objetivo = new ObjetivoLlenarBarra()
@@ -132,6 +137,7 @@ object nivel5 inherits Nivel(
     imagenMessi = "messi_dificil.png",
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel5.png",
+    imagenIndicadorNivel = "hud_nivel5.png",
     imagenGanar = "pantallaGanar.png",
     imagenPerder = "pantallaPerder.png",
     objetivo = new ObjetivoJuntarCopas(cantidad = 5)

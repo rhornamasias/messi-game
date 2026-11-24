@@ -7,7 +7,7 @@ class ObjetivoLlenarBarra {
 
     method seCumplio() = barraEmocional.estaEnMaximo()
 
-    method textoDeProgreso() = ""
+    method tieneIndicador() = false
 }
 
 class ObjetivoJuntarCopas {
@@ -26,5 +26,7 @@ class ObjetivoJuntarCopas {
 
     method seCumplio() = copas >= cantidad
 
-    method textoDeProgreso() = "Copas: " + copas.toString() + "/" + cantidad.toString()
+    method tieneIndicador() = true
+
+    method imagenDeProgreso() = "hud_copas_" + copas.toString() + ".png"
 }

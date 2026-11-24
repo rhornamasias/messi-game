@@ -82,7 +82,7 @@ describe "Messi Game - logica principal" {
     objetivo.recolectado(gol.apply())
     objetivo.recolectado(copaMundial.apply())
     assert.notThat(objetivo.seCumplio())
-    assert.equals("Copas: 1/2", objetivo.textoDeProgreso())
+    assert.equals("hud_copas_1.png", objetivo.imagenDeProgreso())
 
     objetivo.recolectado(copaMundial.apply())
     assert.that(objetivo.seCumplio())
@@ -92,5 +92,24 @@ describe "Messi Game - logica principal" {
     assert.that(nivel5.gloria().itemsPosibles().contains(copaMundial))
     assert.notThat(nivel5.estable().itemsPosibles().contains(copaMundial))
     assert.notThat(nivel5.crisis().itemsPosibles().contains(copaMundial))
+  }
+
+  test "Un recolectable bueno que cae al piso resta un porcentaje minimo y uno malo no" {
+    critica.apply().alCaerAlPiso()
+    assert.equals(0.5, barraEmocional.porcentaje())
+
+    gol.apply().alCaerAlPiso()
+    assert.equals(0.49, barraEmocional.porcentaje())
+  }
+
+  test "Solo el objetivo de juntar copas muestra un indicador de progreso" {
+    assert.notThat(nivel1.objetivo().tieneIndicador())
+    assert.that(nivel5.objetivo().tieneIndicador())
+    assert.equals("hud_copas_0.png", nivel5.objetivo().imagenDeProgreso())
+  }
+
+  test "Cada nivel tiene su propio indicador" {
+    assert.equals("hud_nivel1.png", nivel1.imagenIndicadorNivel())
+    assert.equals("hud_nivel5.png", nivel5.imagenIndicadorNivel())
   }
 }

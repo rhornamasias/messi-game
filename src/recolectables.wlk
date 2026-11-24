@@ -10,7 +10,6 @@ class Recolectable {
     method position() = position
     method position(nuevaPosicion) { position = nuevaPosicion }
     
-    
     method iniciarCaida(velocidad) {
         game.onTick(velocidad, self.nombreDeCaida(), { self.caer() })
     }
@@ -20,6 +19,7 @@ class Recolectable {
     method caer() {
         position = position.down(1)
         if (position.y() < 0) {
+            self.alCaerAlPiso()
             self.desaparecerSeguro()
         }
     }
@@ -49,6 +49,8 @@ class Recolectable {
     }
 
     method esCopaDelMundo() = false
+
+    method alCaerAlPiso() {}
 }
 
 class RecolectableMalo inherits Recolectable {
@@ -57,6 +59,12 @@ class RecolectableMalo inherits Recolectable {
 
 class RecolectableBueno inherits Recolectable {
     override method sonido() = "sonidoBueno.mp3"
+
+    method penalidadPorCaer() = -0.01
+
+    override method alCaerAlPiso() {
+        barraEmocional.modificarPorcentaje(self.penalidadPorCaer())
+    }
 }
 
 class RecolectableCopaDelMundo inherits RecolectableBueno {
