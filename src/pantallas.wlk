@@ -15,16 +15,6 @@ object atajoVolverAlMenu {
     }
 }
 
-object indicadorVolverAlMenu {
-    method position() = game.at(8, 1)
-    method text() = "Presioná M para volver al menú"
-}
-
-object indicadorAccion {
-    var property text = ""
-    method position() = game.at(8, 2)
-}
-
 object indicadorObjetivo {
     method position() = game.at(0, 7)
     method image() = partida.nivelActual().objetivo().imagenDeProgreso()
@@ -84,21 +74,12 @@ class PantallaDeResultado {
     method position() = game.at(0, 0)
 
     method image()
-    method textoDeAccion()
     method continuar()
-
-    method mostrarAtajoAlMenu() = true
 
     method mostrar() {
         game.clear()
         game.addVisual(self)
         
-        indicadorAccion.text(self.textoDeAccion())
-        game.addVisual(indicadorAccion)
-        if (self.mostrarAtajoAlMenu()) {
-            game.addVisual(indicadorVolverAlMenu)
-        }
-
         keyboard.enter().onPressDo({ self.continuar() })
         atajoVolverAlMenu.habilitar()
     }
@@ -107,12 +88,6 @@ class PantallaDeResultado {
 object pantallaNivelSuperado inherits PantallaDeResultado {
     override method image() = partida.nivelActual().imagenGanar()
 
-    override method textoDeAccion() {
-        return if (partida.esUltimoNivel()) "¡Completaste el juego! Enter para volver al menú" else "¡Nivel superado! Presioná Enter para el siguiente nivel"
-    }
-
-    override method mostrarAtajoAlMenu() = not partida.esUltimoNivel()
-
     override method continuar() {
         partida.continuarTrasGanar()
     }
@@ -120,8 +95,6 @@ object pantallaNivelSuperado inherits PantallaDeResultado {
 
 object pantallaNivelPerdido inherits PantallaDeResultado {
     override method image() = partida.nivelActual().imagenPerder()
-
-    override method textoDeAccion() = "Presioná Enter para reintentar el nivel"
 
     override method continuar() {
         partida.reintentarNivel()

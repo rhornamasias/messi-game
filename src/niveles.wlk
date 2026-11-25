@@ -23,8 +23,8 @@ object nivel1 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel1.png",
     imagenIndicadorNivel = "hud_nivel1.png",
-    imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png",
+    imagenGanar = "pantallaVictoria_nivel1.png",
+    imagenPerder = "pantallaDerrota_nivel1.png",
     objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
@@ -52,8 +52,8 @@ object nivel2 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel2.png",
     imagenIndicadorNivel = "hud_nivel2.png",
-    imagenGanar = "pantallaGanar.png", 
-    imagenPerder = "pantallaPerder.png",
+    imagenGanar = "pantallaVictoria_nivel2.png", 
+    imagenPerder = "pantallaDerrota_nivel2.png",
     objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
@@ -81,8 +81,8 @@ object nivel3 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel3.png",
     imagenIndicadorNivel = "hud_nivel3.png",
-    imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png",
+    imagenGanar = "pantallaVictoria_nivel3.png",
+    imagenPerder = "pantallaDerrota_nivel3.png",
     objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
@@ -109,8 +109,8 @@ object nivel4 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel4.png",
     imagenIndicadorNivel = "hud_nivel4.png",
-    imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png",
+    imagenGanar = "pantallaVictoria_nivel4.png",
+    imagenPerder = "pantallaDerrota_nivel4.png",
     objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
@@ -138,25 +138,25 @@ object nivel5 inherits Nivel(
     musica = "musicaFondo.mp3",
     imagenPresentacion = "presentacion_nivel5.png",
     imagenIndicadorNivel = "hud_nivel5.png",
-    imagenGanar = "pantallaGanar.png",
-    imagenPerder = "pantallaPerder.png",
-    objetivo = new ObjetivoJuntarCopas(cantidad = 5)
+    imagenGanar = "pantallaVictoria_nivel5.png",
+    imagenPerder = "pantallaDerrota_nivel5.png",
+    objetivo = new ObjetivoJuntarCopas(cantidad = 3)
 ) {
     override method crisis() = new EstadoEmocional(
         tiempoCooldown = 450,
         velocidadCaida = 120,
-        itemsPosibles = [ sancorSeguros, sancorSeguros, finalPerdida, critica, gol, camisetaDiez ]
+        itemsPosibles = [ sancorSeguros, sancorSeguros, finalPerdida, finalPerdida, critica, critica, tarjetaRoja ,gol, gol, camisetaDiez ]
     )
 
     override method estable() = new EstadoEmocional(
         tiempoCooldown = 230,
         velocidadCaida = 250,
-        itemsPosibles = [ tarjetaRoja, critica, finalPerdida, finalPerdida, gol ]
+        itemsPosibles = [ sancorSeguros, tarjetaRoja, critica, critica, finalPerdida, finalPerdida, gol, gol, camisetaDiez, copaAmerica ]
     )
 
     override method gloria() = new EstadoEmocional(
         tiempoCooldown = 120,
         velocidadCaida = 420,
-        itemsPosibles = [ copaMundial, gol, tarjetaRoja, critica, finalPerdida ]
+        itemsPosibles = [ copaMundial, gol, gol, camisetaDiez, copaAmerica, tarjetaRoja, critica, critica, finalPerdida, sancorSeguros ]
     )
 }

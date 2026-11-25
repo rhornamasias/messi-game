@@ -56,6 +56,7 @@ object partida{
 
         game.onCollideDo(messi, { objeto => messi.atraparRecolectable(objeto) })
         game.onTick(1500, "generadorObjetos", { self.generarObjeto() })
+        game.onTick(40, "animacionBarra", { barraEmocional.animar() })
         atajoVolverAlMenu.habilitar()
 
         reproductorMusical.iniciarMusicaDeNivel(nivelActual)

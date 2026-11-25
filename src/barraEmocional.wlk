@@ -6,17 +6,30 @@ object barraEmocional {
     const porcentajeInicial = 0.5
     const umbralGloria = 0.65
     const umbralCrisis = 0.35
-    const ancho = 5
+    const pasoDeAnimacion = 0.02
     const position = game.at(5, 7)
     var porcentaje = porcentajeInicial
+    var porcentajeMostrado = porcentajeInicial
 
     method position() = position
 
-    method ancho() = ancho
-
     method porcentaje() = porcentaje
 
-    method reiniciar() { porcentaje = porcentajeInicial }
+    method porcentajeMostrado() = porcentajeMostrado
+
+    method reiniciar() { 
+        porcentaje = porcentajeInicial
+        porcentajeMostrado = porcentajeInicial
+    }
+
+
+    method animar(){
+        if(porcentajeMostrado < porcentaje) {
+            porcentajeMostrado = porcentaje.min(porcentajeMostrado + pasoDeAnimacion)
+        } else if (porcentajeMostrado > porcentaje) {
+            porcentajeMostrado = porcentaje.max(porcentajeMostrado - pasoDeAnimacion)
+        }
+    }
 
     method modificarPorcentaje(cantidad) {
         porcentaje = 0.max(1.min(porcentaje + cantidad))
@@ -40,8 +53,9 @@ object barraEmocional {
 }
 
 object indicadorBarra {
-    method image() = "indicador.png"
-    
-    method xActual() = barraEmocional.position().x() + (barraEmocional.porcentaje() * barraEmocional.ancho())
-    method position() = game.at(self.xActual().truncate(0), 8)
+    const pasos = 20
+ 
+    method position() = game.at(4, 8)
+
+    method image() = "indicador_" + (barraEmocional.porcentajeMostrado() * pasos).round().toString() + ".png"
 }

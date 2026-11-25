@@ -44,11 +44,25 @@ describe "Messi Game - logica principal" {
     assert.equals("sonidoMalo.mp3", tarjetaRoja.apply().sonido())
   }
 
-  test "El indicador de la barra se ubica segun el porcentaje" {
-    assert.equals(7, indicadorBarra.position().x())
+  test "El indicador de la barra se desliza de a poco hacia el porcentaje real" {
+    assert.equals("indicador_10.png", indicadorBarra.image())
 
     barraEmocional.modificarPorcentaje(0.2)
-    assert.equals(8, indicadorBarra.position().x())
+    assert.equals(0.5, barraEmocional.porcentajeMostrado())
+
+    barraEmocional.animar()
+    assert.equals(0.52, barraEmocional.porcentajeMostrado())
+
+    11.times({ paso => barraEmocional.animar() })
+    assert.equals(0.7, barraEmocional.porcentajeMostrado())
+    assert.equals("indicador_14.png", indicadorBarra.image())
+  }
+
+  test "Al reiniciar la barra el indicador vuelve a la mitad" {
+    barraEmocional.modificarPorcentaje(-0.3)
+    barraEmocional.reiniciar()
+    assert.equals(0.5, barraEmocional.porcentaje())
+    assert.equals(0.5, barraEmocional.porcentajeMostrado())
   }
 
   test"El juego arranca en el nivel 1 y el último nivel es el 5" {
@@ -112,4 +126,15 @@ describe "Messi Game - logica principal" {
     assert.equals("hud_nivel1.png", nivel1.imagenIndicadorNivel())
     assert.equals("hud_nivel5.png", nivel5.imagenIndicadorNivel())
   }
+
+  test "En el nivel 5 hay que juntar tres copas del mundo para ganar" {
+    nivel5.objetivo().recolectado(copaMundial.apply())
+    nivel5.objetivo().recolectado(copaMundial.apply())
+    assert.notThat(nivel5.objetivo().seCumplio())
+    assert.equals("hud_copas_2.png", nivel5.objetivo().imagenDeProgreso())
+
+    nivel5.objetivo().recolectado(copaMundial.apply())
+    assert.that(nivel5.objetivo().seCumplio())
+  }
+
 }
