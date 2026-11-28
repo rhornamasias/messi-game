@@ -19,8 +19,8 @@ class Nivel {
 
 object nivel1 inherits Nivel(
     numero = 1,
-    imagenMessi = "messi.png",
-    musica = "musicaFondo.mp3",
+    imagenMessi = "messi_nivel1.png",
+    musica = "musica_nivel1.mp3",
     imagenPresentacion = "presentacion_nivel1.png",
     imagenIndicadorNivel = "hud_nivel1.png",
     imagenGanar = "pantallaVictoria_nivel1.png",
@@ -30,26 +30,26 @@ object nivel1 inherits Nivel(
     override method crisis() = new EstadoEmocional(
         tiempoCooldown = 300, 
         velocidadCaida = 300, 
-        itemsPosibles = [ gol, finalPerdida, critica ]
+        itemsPosibles = [ gol1, asistencia, tarjetaRoja, lesion, lesion, critica, copaAmericaPerdida, copaAmericaPerdida ]
     )
 
     override method estable() = new EstadoEmocional(
-        tiempoCooldown = 120, 
+        tiempoCooldown = 125, 
         velocidadCaida = 500, 
-        itemsPosibles = [ copaAmerica, gol, critica ]
+        itemsPosibles = [ gol1, gol1, asistencia, camisetaDiecinueve, tarjetaRoja, lesion, critica, copaAmericaPerdida ]
     )
 
     override method gloria() = new EstadoEmocional(
-        tiempoCooldown = 50,
+        tiempoCooldown = 55,
         velocidadCaida = 800,
-        itemsPosibles = [ copaMundial, gol, camisetaDiez, critica ]
+        itemsPosibles = [ medallaJuegosOlimpicos, gol1, gol1, asistencia, camisetaDiecinueve, tarjetaRoja, lesion, critica ]
     )
 }
 
 object nivel2 inherits Nivel(
     numero = 2,
-    imagenMessi = "messi.png",
-    musica = "musicaFondo.mp3",
+    imagenMessi = "messi_nivel2.png",
+    musica = "musica_nivel2.mp3",
     imagenPresentacion = "presentacion_nivel2.png",
     imagenIndicadorNivel = "hud_nivel2.png",
     imagenGanar = "pantallaVictoria_nivel2.png", 
@@ -57,28 +57,28 @@ object nivel2 inherits Nivel(
     objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
-        tiempoCooldown = 330,
+        tiempoCooldown = 335,
         velocidadCaida = 260,
-        itemsPosibles = [ gol, finalPerdida, critica, critica ] 
+        itemsPosibles = [ gol2, maradonaDt, critica, critica, lesion, tarjetaRoja, copaMundialPerdida, lesion ] 
     )
     
     override method estable() = new EstadoEmocional(
-        tiempoCooldown = 140, 
-        velocidadCaida = 420, 
-        itemsPosibles = [ copaAmerica, gol, critica, tarjetaRoja ] 
+        tiempoCooldown = 145, 
+        velocidadCaida = 430, 
+        itemsPosibles = [ gol2, capitan, asistencia, camisetaDiez, critica, critica, lesion, copaMundialPerdida, tarjetaRoja ] 
     )
     
     override method gloria() = new EstadoEmocional(
-        tiempoCooldown = 60, 
+        tiempoCooldown = 70, 
         velocidadCaida = 700, 
-        itemsPosibles = [ finalPerdida, gol, camisetaDiez, critica, tarjetaRoja ] 
+        itemsPosibles = [ maradonaDt, gol2, capitan, camisetaDiez, asistencia, critica, critica, lesion, copaMundialPerdida ] 
     )
 }
 
 object nivel3 inherits Nivel(
     numero = 3,
-    imagenMessi = "messi.png",
-    musica = "musicaFondo.mp3",
+    imagenMessi = "messi_nivel3.png",
+    musica = "musica_nivel3.mp3",
     imagenPresentacion = "presentacion_nivel3.png",
     imagenIndicadorNivel = "hud_nivel3.png",
     imagenGanar = "pantallaVictoria_nivel3.png",
@@ -86,27 +86,27 @@ object nivel3 inherits Nivel(
     objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
-        tiempoCooldown = 360,
+        tiempoCooldown = 365,
         velocidadCaida = 200,
-        itemsPosibles = [ gol, finalPerdida, critica, tarjetaRoja, finalPerdida ]
+        itemsPosibles = [ gol3, asistencia, critica, critica, copaMundialPerdida, copaMundialPerdida]
     )
 
     override method estable() = new EstadoEmocional(
-        tiempoCooldown = 170,
-        velocidadCaida = 360,
-        itemsPosibles = [ copaAmerica, gol, critica, tarjetaRoja, finalPerdida ]
+        tiempoCooldown = 175,
+        velocidadCaida = 370,
+        itemsPosibles = [ gol3, gol3, asistencia, capitan, camisetaDiez, critica, critica, copaMundialPerdida, copaMundialPerdida, lesion ]
     )
 
     override method gloria() = new EstadoEmocional(
-        tiempoCooldown = 80,
+        tiempoCooldown = 90,
         velocidadCaida = 600,
-        itemsPosibles = [ copaMundial, gol, camisetaDiez, critica, tarjetaRoja ]
+        itemsPosibles = [ fuleco, gol3, gol3, asistencia, capitan, camisetaDiez, critica, critica, lesion, copaMundialPerdida ]
     )
 }
 object nivel4 inherits Nivel(
     numero = 4,
-    imagenMessi = "messi_dificil.png",
-    musica = "musicaFondo.mp3",
+    imagenMessi = "messi_nivel4.png",
+    musica = "musica_nivel4.mp3",
     imagenPresentacion = "presentacion_nivel4.png",
     imagenIndicadorNivel = "hud_nivel4.png",
     imagenGanar = "pantallaVictoria_nivel4.png",
@@ -114,28 +114,28 @@ object nivel4 inherits Nivel(
     objetivo = new ObjetivoLlenarBarra()
 ) {
     override method crisis() = new EstadoEmocional(
-        tiempoCooldown = 400,
+        tiempoCooldown = 405,
         velocidadCaida = 150,
-        itemsPosibles = [ sancorSeguros, sancorSeguros, finalPerdida, critica, gol, camisetaDiez ]
+        itemsPosibles = [ gol4, scaloni, sampaoli, sampaoli, copaAmericaPerdida, copaAmericaCentenarioPerdida, critica, tarjetaRoja, lesion, lesion, copaAmericaCentenarioPerdida ]
     )
 
     override method estable() = new EstadoEmocional(
-        tiempoCooldown = 200,
-        velocidadCaida = 300,
-        itemsPosibles = [ tarjetaRoja, critica, finalPerdida, gol ]
+        tiempoCooldown = 205,
+        velocidadCaida = 310,
+        itemsPosibles = [ gol4, scaloni, camisetaDiez, sampaoli, copaAmericaPerdida,copaAmericaCentenarioPerdida, critica, lesion, sampaoli, tarjetaRoja, tarjetaRoja ]
     )
 
     override method gloria() = new EstadoEmocional(
-        tiempoCooldown = 100,
+        tiempoCooldown = 105,
         velocidadCaida = 500,
-        itemsPosibles = [ copaAmerica, gol, tarjetaRoja, critica, finalPerdida ]
+        itemsPosibles = [ scaloni, gol4, gol4, camisetaDiez, capitan, copaAmericaPerdida, copaAmericaCentenarioPerdida, sampaoli, critica, copaAmericaCentenarioPerdida ]
     )
 }
 
 object nivel5 inherits Nivel(
     numero = 5,
-    imagenMessi = "messi_dificil.png",
-    musica = "musicaFondo.mp3",
+    imagenMessi = "messi_nivel5.png",
+    musica = "musica_nivel5.mp3",
     imagenPresentacion = "presentacion_nivel5.png",
     imagenIndicadorNivel = "hud_nivel5.png",
     imagenGanar = "pantallaVictoria_nivel5.png",
@@ -143,20 +143,20 @@ object nivel5 inherits Nivel(
     objetivo = new ObjetivoJuntarCopas(cantidad = 3)
 ) {
     override method crisis() = new EstadoEmocional(
-        tiempoCooldown = 450,
-        velocidadCaida = 120,
-        itemsPosibles = [ sancorSeguros, sancorSeguros, finalPerdida, finalPerdida, critica, critica, tarjetaRoja ,gol, gol, camisetaDiez ]
+        tiempoCooldown = 455,
+        velocidadCaida = 110,
+        itemsPosibles = [ gol5, scaloni, asistencia, sancorSeguros, sancorSeguros, critica, critica, chiquiTapia, chiquiTapia, tarjetaRoja, lesion ]
     )
 
     override method estable() = new EstadoEmocional(
-        tiempoCooldown = 230,
-        velocidadCaida = 250,
-        itemsPosibles = [ sancorSeguros, tarjetaRoja, critica, critica, finalPerdida, finalPerdida, gol, gol, camisetaDiez, copaAmerica ]
+        tiempoCooldown = 245,
+        velocidadCaida = 240,
+        itemsPosibles = [ gol5, scaloni, finalissima, tarjetaRoja, critica, chiquiTapia, lesion, lesion, tarjetaRoja, sancorSeguros ]
     )
 
     override method gloria() = new EstadoEmocional(
-        tiempoCooldown = 120,
-        velocidadCaida = 420,
-        itemsPosibles = [ copaMundial, gol, gol, camisetaDiez, copaAmerica, tarjetaRoja, critica, critica, finalPerdida, sancorSeguros ]
+        tiempoCooldown = 135,
+        velocidadCaida = 350,
+        itemsPosibles = [ copaMundial, gol5, gol5, finalissima, copaAmerica, scaloni, critica, chiquiTapia, chiquiTapia, sancorSeguros ]
     )
 }

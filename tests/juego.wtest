@@ -8,7 +8,7 @@ import src.partida.*
 describe "Messi Game - logica principal" {
 
   test "Messi atrapa cualquier recolectable sin saber cual es y cada uno modifica la barra a su manera" {
-    messi.atraparRecolectable(gol.apply())
+    messi.atraparRecolectable(gol1.apply())
     assert.equals(0.55, barraEmocional.porcentaje())
 
     messi.atraparRecolectable(critica.apply())
@@ -33,15 +33,19 @@ describe "Messi Game - logica principal" {
   }
 
   test "Messi se muestra con la imagen del nivel actual" {
-    assert.equals("messi.png", messi.image())
+    assert.equals("messi_nivel1.png", messi.image())
 
     partida.nivelActual(nivel4)
-    assert.equals("messi_dificil.png", messi.image())
+    assert.equals("messi_nivel4.png", messi.image())
   }
   
   test "Los recolectables buenos y malos suenan distinto al ser atrapados" {
     assert.equals("sonidoBueno.mp3", copaAmerica.apply().sonido())
     assert.equals("sonidoMalo.mp3", tarjetaRoja.apply().sonido())
+  }
+
+  test "Un recolectable bueno que se pierde tiene su propio sonido" {
+    assert.equals("sonidoBuenoPerdido.mp3", copaAmerica.apply().sonidoAlCaer())
   }
 
   test "El indicador de la barra se desliza de a poco hacia el porcentaje real" {
@@ -93,7 +97,7 @@ describe "Messi Game - logica principal" {
   test "El objetivo de juntar copas solo cuenta las copas del mundo" {
     const objetivo = new ObjetivoJuntarCopas(cantidad = 2)
 
-    objetivo.recolectado(gol.apply())
+    objetivo.recolectado(scaloni.apply())
     objetivo.recolectado(copaMundial.apply())
     assert.notThat(objetivo.seCumplio())
     assert.equals("hud_copas_1.png", objetivo.imagenDeProgreso())
@@ -112,8 +116,8 @@ describe "Messi Game - logica principal" {
     critica.apply().alCaerAlPiso()
     assert.equals(0.5, barraEmocional.porcentaje())
 
-    gol.apply().alCaerAlPiso()
-    assert.equals(0.49, barraEmocional.porcentaje())
+    maradonaDt.apply().alCaerAlPiso()
+    assert.equals(0.48, barraEmocional.porcentaje())
   }
 
   test "Solo el objetivo de juntar copas muestra un indicador de progreso" {

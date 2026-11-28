@@ -16,7 +16,7 @@ object atajoVolverAlMenu {
 }
 
 object indicadorObjetivo {
-    method position() = game.at(0, 7)
+    method position() = game.at(13, 8)
     method image() = partida.nivelActual().objetivo().imagenDeProgreso()
 }
 
@@ -64,6 +64,7 @@ object pantallaPresentacion{
     method mostrar() {
         game.clear()
         game.addVisual(self)
+        reproductorMusical.iniciarMusicaDePresentacion()
 
         keyboard.enter().onPressDo({ partida.iniciarNivel() })
         atajoVolverAlMenu.habilitar()
